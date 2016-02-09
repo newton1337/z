@@ -1,0 +1,84 @@
+<h1>Logic Update</h1>
+<br>
+<%= form_tag 'score/test' do %>
+  <h4>Directly Effects Score</h4>
+
+  <fieldset class="form-group">
+    <h5>How well maintained is your home?</h5>
+
+    <label class="radio-inline">
+      <input type="radio" name="maintained" value="expert"> Expert/Well
+    </label>
+
+    <label class="radio-inline">
+      <input type="radio" name="maintained" value="somewhat"> Somewhat
+    </label>
+
+    <label class="radio-inline">
+      <input type="radio" name="maintained" value="deferred"> Deferred
+    </label>
+
+  </fieldset>
+
+  <h4>Factors Influcing a Subscale (<em>dampness</em>)</h4>
+
+  <fieldset class="form-group">
+    <h5>Notice condensation on the inside of windows?</h5>
+
+    <label class="radio-inline">
+      <input type="radio" name="condensation" value="yes"> Yes
+    </label>
+
+    <label class="radio-inline">
+      <input type="radio" name="condensation" value="no"> No
+    </label>
+
+  </fieldset>
+
+  <h4>Deeply Nested Interactions</h4>
+
+  <fieldset class="form-group">
+    <h5>Number of Occupants</h5>
+
+    <label class="radio-inline">
+      <input type="radio" name="occupants" value="1-3"> 1 to 3
+    </label>
+
+    <label class="radio-inline">
+      <input type="radio" name="occupants" value="4-6"> 4 to 6
+    </label>
+
+    <label class="radio-inline">
+      <input type="radio" name="occupants" value="6+"> 6+
+    </label>
+
+  </fieldset>
+
+  <fieldset class="form-group">
+    <h5>Do you run a fan while showering?</h5>
+
+    <label class="radio-inline">
+      <input type="radio" name="shower_fan" value="yes"> Yes
+    </label>
+
+    <label class="radio-inline">
+      <input type="radio" name="shower_fan" value="no"> No
+    </label>
+
+  </fieldset>
+
+  <fieldset class="form-group">
+    <h5>Frequency of showers per week > 10 minutes</h5>
+
+    <label class="radio-inline">
+      <input type="radio" name="shower_freq" value="1-5"> 1 to 5
+    </label>
+
+    <label class="radio-inline">
+      <input type="radio" name="shower_freq" value="6-10"> 6 to 10
+    </label>
+
+  </fieldset>
+
+  <%= submit_tag 'Calculate Score', class: 'btn btn-primary' %>
+<% end %>
