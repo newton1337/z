@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+.c-validation {
+  display: block;
+}
+.c-validation.has-error {
+  color: red;
+  font-style: italic;
+  font-size: .9em;
+}
