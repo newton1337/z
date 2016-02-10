@@ -36,6 +36,8 @@ class ScoreController < ApplicationController
 
     @score += maintenance_score
     @score += shower_score
+
+    ScoreMailer.recommendation_email(params[:email], @score).deliver_now
   end
 end
 

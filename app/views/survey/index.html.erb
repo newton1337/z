@@ -1,6 +1,11 @@
 <h1>Logic Update</h1>
 <br>
 <%= form_tag 'score/test', class: 'js-validate' do %>
+  <fieldset class="form-group">
+    <label for="exampleEmail">Email</label>
+    <input type="email" class="form-control" required="required" name="email" id="exampleEmail">
+  </fieldset>
+
   <h4>Directly Effects Score</h4>
 
   <fieldset class="form-group">
