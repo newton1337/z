@@ -1,88 +1,359 @@
-<h1>Logic Update</h1>
-<br>
-<%= form_tag 'score/test', class: 'js-validate' do %>
-  <fieldset class="form-group">
-    <label for="exampleEmail">Email</label>
-    <input type="email" class="form-control" required="required" name="email" id="exampleEmail">
+<h1>Survey</h1>
+
+<%= form_tag 'score/another', class: 'js-validate' do %>
+  <fieldset>
+    <h6 class="label-required">Address</h6>
+
+    <label for="<%= question_id(0, 'name') %>">Name</label>
+    <input type="text" <%= question_html(0, 'name') %> required="required">
+
+    <label for="<%= question_id(0, 'email') %>">Email</label>
+    <input type="text" <%= question_html(0, 'email') %> required="required">
+
+    <label for="<%= question_id(0, 'address') %>">Address</label>
+    <input type="text" <%= question_html(0, 'address') %> required="required">
+
+    <label for="<%= question_id(0, 'zipcode') %>">Zip/Postal Code</label>
+    <input type="text" <%= question_html(0, 'zipcode') %> required="required">
   </fieldset>
 
-  <h4>Directly Effects Score</h4>
-
-  <fieldset class="form-group">
-    <h5>How well maintained is your home?</h5>
-
-    <label class="radio-inline">
-      <input type="radio" name="maintained" value="expert" required="required"> Expert/Well
-    </label>
-
-    <label class="radio-inline">
-      <input type="radio" name="maintained" value="somewhat" required="required"> Somewhat
-    </label>
-
-    <label class="radio-inline">
-      <input type="radio" name="maintained" value="deferred" required="required"> Deferred
-    </label>
-
+  <fieldset>
+    <h6 class="label-required">How many people currently live in your household?</h6>
+    <input type="text" <%= question_html(1, 'occupants') %> required="required">
   </fieldset>
 
-  <h4>Factors Influcing a Subscale (<em>dampness</em>)</h4>
-
-  <fieldset class="form-group">
-    <h5>Notice condensation on the inside of windows?</h5>
-
-    <label class="radio-inline">
-      <input type="radio" name="condensation" value="yes"> Yes
-    </label>
-
-    <label class="radio-inline">
-      <input type="radio" name="condensation" value="no"> No
-    </label>
-
+  <fieldset>
+    <h6 class="label-required">How many pets currently live in your household?</h6>
+    <input type="text" <%= question_html(2, 'pets') %> required="required">
   </fieldset>
 
-  <h4>Deeply Nested Interactions</h4>
-
-  <fieldset class="form-group">
-    <h5>Number of Occupants</h5>
-
-    <label class="radio-inline">
-      <input type="radio" name="occupants" value="1-3"> 1 to 3
+  <fieldset>
+    <h6 class="label-required">What type of home or building do you live in?</h6>
+    <label>
+      <input type="radio" value="single" <%= question_html(3, 'type') %> required="required">
+      Single family home
     </label>
-
-    <label class="radio-inline">
-      <input type="radio" name="occupants" value="4-6"> 4 to 6
+    <label>
+      <input type="radio" value="multi" <%= question_html(3, 'type') %> required="required">
+      Multi-unit home
     </label>
-
-    <label class="radio-inline">
-      <input type="radio" name="occupants" value="6+"> 6+
-    </label>
-
   </fieldset>
 
-  <fieldset class="form-group">
-    <h5>Do you run a fan while showering?</h5>
-
-    <label class="radio-inline">
-      <input type="radio" name="shower_fan" value="yes"> Yes
+  <fieldset>
+    <h6 class="label-required">How many stories is your home?</h6>
+    <label>
+      <input type="radio" value="1" <%= question_html(4, 'stories') %> required="required">
+      1
     </label>
-
-    <label class="radio-inline">
-      <input type="radio" name="shower_fan" value="no"> No
+    <label>
+      <input type="radio" value="2" <%= question_html(4, 'stories') %> required="required">
+      2
     </label>
-
+    <label>
+      <input type="radio" value="3" <%= question_html(4, 'stories') %> required="required">
+      3
+    </label>
+    <label>
+      <input type="radio" value="4+" <%= question_html(4, 'stories') %> required="required">
+      4+
+    </label>
   </fieldset>
 
-  <fieldset class="form-group">
-    <h5>Frequency of showers per week > 10 minutes</h5>
+  <fieldset>
+    <h6 class="label-required">Approximately when was your home built?</h6>
+    <%
+        times = ['2014-2015', '2010-2013', '2005-2009', '2000-2004', '1990-1999', '1980-1980', '1970-1979', '1960-1969', '1950-1959', '1940-1949', '1930-1939', '1920-1929', 'Before 1919']
+    %>
+    <%= build_radios(times, 5, 'home_built', true).html_safe %>
+  </fieldset>
 
-    <label class="radio-inline">
-      <input type="radio" name="shower_freq" value="1-5"> 1 to 5
+  <fieldset>
+    <h6>How long have you lived in the house?</h6>
+    <label>
+      <input type="radio" value="less_than_1" <%= question_html(6, 'occupied_for') %>>
+      Less than 1 year
     </label>
-
-    <label class="radio-inline">
-      <input type="radio" name="shower_freq" value="6-10"> 6 to 10
+    <label>
+      <input type="radio" value="2-9" <%= question_html(6, 'occupied_for') %>>
+      2-9 years
     </label>
+    <label>
+      <input type="radio" value="greater_than_9" <%= question_html(6, 'occupied_for') %>>
+      More than 10 years
+    </label>
+  </fieldset>
 
+  <fieldset>
+    <h6 class="label-required">Approximately how many square feed is your home?</h6>
+    <label>
+      <input type="radio" value="less_than_1000" <%= question_html(7, 'square_feet') %> required="required">
+      Less than 1000 sq. ft.
+    </label>
+    <label>
+      <input type="radio" value="1000_2000" <%= question_html(7, 'square_feet') %> required="required">
+      1000-2000 sq. ft.
+    </label>
+    <label>
+      <input type="radio" value="2001_4000" <%= question_html(7, 'square_feet') %> required="required">
+      2001-4000 sq. ft.
+    </label>
+    <label>
+      <input type="radio" value="4001_7000" <%= question_html(7, 'square_feet') %> required="required">
+      4001-7000 sq. ft.
+    </label>
+    <label>
+      <input type="radio" value="greater_than_7000" <%= question_html(7, 'square_feet') %> required="required">
+      Greater than 7000 sq. ft.
+    </label>
+  </fieldset>
+
+  <fieldset>
+    <h6>How well maintained is your home?</h6>
+    <label>
+      <input type="radio" value="expert" <%= question_html(8, 'maintained') %>>
+      Expert/well maintained
+    </label>
+    <label>
+      <input type="radio" value="somewhat" <%= question_html(8, 'maintained') %>>
+      Somewhat maintained
+    </label>
+    <label>
+      <input type="radio" value="deferred" <%= question_html(8, 'maintained') %>>
+      Deffered maintenance
+    </label>
+  </fieldset>
+
+  <fieldset>
+    <h6>What type of exterior walls does your home have?</h6>
+    <% types = ['Brick', 'Vinyl', 'Wood', 'Stucco', 'Solid concrete'] %>
+    <%= build_radios(types, 9, 'exterior_type') %>
+    <label>
+      <input type="radio" value="other" <%= question_html(9, 'exterior_type') %>>
+      Other (please specify)<br>
+      <input type="text" <%= question_html(9, 'exterior_type') %>>
+    </label>
+  </fieldset>
+
+  <fieldset>
+    <h6>What type of roof does your home have?</h6>
+    <label>
+      <input type="radio" value="flat" <%= question_html(10, 'roof_type') %>>
+      Flat
+    </label>
+    <label>
+      <input type="radio" value="cathedral" <%= question_html(10, 'roof_type') %>>
+      Cathedral / A-frame / Sloped / Barrel
+    </label>
+    <label>
+      <input type="radio" value="complex" <%= question_html(10, 'roof_type') %>>
+      Complex (multiple intersecting points)
+    </label>
+  </fieldset>
+
+  <fieldset>
+    <h6>Is the exterior of your house <em>mostly</em> in the sun or the shade?</h6>
+    <label>
+      <input type="radio" value="sun" <%= question_html(11, 'exterior_shade') %>>
+      Mostly in the sun
+    </label>
+    <label>
+      <input type="radio" value="shade" <%= question_html(11, 'exterior_shade') %>>
+      Mostly in the shade
+    </label>
+  </fieldset>
+
+  <fieldset>
+    <h6 class="label-required">Does your house have any of the following features? (please select all that apply)</h6>
+    <% features = {
+      'attached' => 'Attached or underground garage',
+      'attic' => 'Attic (unfinished/roof cavity)',
+      'basement' => 'Basement (any type)',
+      'stilts' => 'Built on stilts',
+      'crawlspace' => 'Crawlspace (<em>a space under the floor that allows access to plumbing and wiring</em>)',
+      'erv' => 'ERV/HRV/Mechanical Ventilation System',
+      'fireplace' => 'Fireplace (any type)',
+      'air_filter' => 'Portable air filters',
+      'carpet' => 'Wall-to-wall carpet (in all or most of the house)',
+      'na' => 'N/A',
+    } %>
+    <%= build_checkboxes(features, 12, 'features', true) %>
+  </fieldset>
+
+  <fieldset>
+    <h6>Please describe your crawlsapce. Select al that apply. If you do not have a crawlsapce, click "Next"</h6>
+    <% crawlspace = {
+      'dry' => 'Always dry',
+      'seasonally_wet' => 'Seasonally/ocasionally damp/wet',
+      'localized_wetness' => 'Localized areas of dampness/wetness',
+      'always_wet' => 'Always damp/wet',
+      'sealed_barrier' => 'Sealed (barrier over dirt)',
+      'sealed_mva' => 'Sealed with mechanically ventilated air',
+      'idk' => 'I don\'t know',
+    } %>
+    <%= build_checkboxes(crawlspace, 13, 'crawlspace_features') %>
+  </fieldset>
+
+  <fieldset>
+    <h6>Please describe your basement. (Select all that apply.) If you do not have a basement, click "Next."</h6>
+    <% basement = {
+      'dry' => 'Always dry',
+      'seasonally_wet' => 'Seasonally/ocasionally damp/wet',
+      'localized_wetness' => 'Localized areas of dampness/wetness',
+      'always_wet' => 'Always damp/wet',
+      'finished' => 'Finished, except for mechanical room',
+      'unfinished' => 'Unfinished',
+      'dirt' => 'Dirt Floor'
+    } %>
+    <%= build_checkboxes(basement, 14, 'basement') %>
+  </fieldset>
+
+  <fieldset>
+    <h6>Please describe your fireplace(s). (Select all that apply.) If you do not have a fireplace, click "Next."</h6>
+    <% fireplaces = {
+      'wood' => 'Wood',
+      'gas_open_front' => 'Gas, with ceramic logs, open front',
+      'gas_sealed_front' => 'Gas, with ceramic logs, sealed glass front',
+      'used_often' => 'Used often/frequently',
+      'used_never' => 'Used infrequently/never used',
+    } %>
+    <%= build_checkboxes(fireplaces, 15, 'fireplaces') %>
+  </fieldset>
+
+  <fieldset>
+    <h6>What is the age of all/majority of your wall-to-wall carpeting? If you do not have carpeting, please click "Next."</h6>
+    <% carpeting_facts = {
+      'new' => 'New',
+      '1_5' => '1 to 5 years old',
+      '6_15' => '6 to 15 years old',
+      '16_25' => '16 to 25 years old',
+      'idk' => 'I don\'t know',
+    } %>
+    <%= build_radios(carpeting_facts, 16, 'carpeting') %>
+  </fieldset>
+
+  <fieldset>
+    <h6 class="label-required">Please describe the primary heating system in your home.</h6>
+    <% heating = {
+      'central_heat' => 'Forced/central heat',
+      'baseboard' => 'Baseboard',
+      'radiant_floor' => 'Radiant Floor',
+      'wood_stove' => 'Wood stove/Fireplace',
+      'radiator' => 'Radiator',
+      'none' => 'None',
+    } %>
+    <%= build_radios(heating, 17, 'heating_system', true) %>
+  </fieldset>
+
+  <fieldset>
+    <h6 class="label-required">Is your heating?</h6>
+    <% heating_type = {
+      'gas' => 'Gas',
+      'fuel_oil' => 'Fuel Oil',
+      'electric' => 'Electric',
+      'wood' => 'Wood (stove/fireplace)',
+    } %>
+    <%= build_radios(heating_type, 18, 'heating_type', true) %>
+  </fieldset>
+
+  <fieldset>
+    <h6 class="label-required">Please describe the primary cooling system in your home.</h6>
+    <% cooling = {
+      'central_air' => 'Central air conditioning',
+      'window_air' => 'Window air conditioner(s)',
+      'evaporative' => 'Evaporative cooler (swamp cooler)',
+      'whole_house' => 'Whole house (attic) fan',
+      'window_fan' => 'Window fan(s)',
+      'none' => 'None',
+    } %>
+    <%= build_radios(cooling, 19, 'cooling_system', true) %>
+  </fieldset>
+
+  <fieldset>
+    <h6 class="label-required">Has your home ever been remodeled, renovated and/or retrofitted?</h6>
+    <% remodeled = {
+      'yes' => 'Yes',
+      'no' => 'No',
+      'idk' => 'I don\'t know',
+    } %>
+    <%= build_radios(remodeled, 20, 'remodeled', true) %>
+  </fieldset>
+
+  <fieldset>
+    <h6>When was your home remodeled/renovated? Check all that apply.</h6>
+
+    <table class="table table-striped table-fifths">
+      <thead>
+        <tr>
+          <th>&nbsp;</th>
+          <th>Full remodel</th>
+          <th>Room Addition/Kitchen or Bath Remodel</th>
+          <th>Minor renovation</th>
+          <th>Energy Retrofit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Current/ongoing</th>
+          <td>
+            <input type="radio" value="full" <%= multi_quesiton_html(21, 'remodel_time', 'current') %>>
+          </td>
+          <td>
+            <input type="radio" value="room" <%= multi_quesiton_html(21, 'remodel_time', 'current') %>>
+          </td>
+          <td>
+            <input type="radio" value="minor" <%= multi_quesiton_html(21, 'remodel_time', 'current') %>>
+          </td>
+          <td>
+            <input type="radio" value="energy" <%= multi_quesiton_html(21, 'remodel_time', 'current') %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Within the past 24 months</th>
+          <td>
+            <input type="radio" value="full" <%= multi_quesiton_html(21, 'remodel_time', 'within_24_months') %>>
+          </td>
+          <td>
+            <input type="radio" value="room" <%= multi_quesiton_html(21, 'remodel_time', 'within_24_months') %>>
+          </td>
+          <td>
+            <input type="radio" value="minor" <%= multi_quesiton_html(21, 'remodel_time', 'within_24_months') %>>
+          </td>
+          <td>
+            <input type="radio" value="energy" <%= multi_quesiton_html(21, 'remodel_time', 'within_24_months') %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">In last 2-5 years</th>
+          <td>
+            <input type="radio" value="full" <%= multi_quesiton_html(21, 'remodel_time', '2_5_years') %>>
+          </td>
+          <td>
+            <input type="radio" value="room" <%= multi_quesiton_html(21, 'remodel_time', '2_5_years') %>>
+          </td>
+          <td>
+            <input type="radio" value="minor" <%= multi_quesiton_html(21, 'remodel_time', '2_5_years') %>>
+          </td>
+          <td>
+            <input type="radio" value="energy" <%= multi_quesiton_html(21, 'remodel_time', '2_5_years') %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">In last 5-10 years</th>
+          <td>
+            <input type="radio" value="full" <%= multi_quesiton_html(21, 'remodel_time', '5_10_years') %>>
+          </td>
+          <td>
+            <input type="radio" value="room" <%= multi_quesiton_html(21, 'remodel_time', '5_10_years') %>>
+          </td>
+          <td>
+            <input type="radio" value="minor" <%= multi_quesiton_html(21, 'remodel_time', '5_10_years') %>>
+          </td>
+          <td>
+            <input type="radio" value="energy" <%= multi_quesiton_html(21, 'remodel_time', '5_10_years') %>>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </fieldset>
 
   <%= submit_tag 'Calculate Score', class: 'btn btn-primary' %>

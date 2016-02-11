@@ -14,6 +14,33 @@
  *= require_self
  */
 
+form {
+  padding: 1rem;
+  margin: 1rem -1rem;
+  border: solid #f7f7f7;
+  border-width: .2rem;
+}
+
+label {
+  display: block !important;
+  font-size: .9rem;
+}
+
+fieldset {
+  margin-bottom: 1em !important;
+}
+
+.table-fifths th {
+  width: 20%;
+}
+
+.label-required {
+  font-size: 1.1em;
+}
+.label-required:before {
+  content: '*';
+}
+
 .c-validation {
   display: block;
 }

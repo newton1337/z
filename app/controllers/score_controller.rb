@@ -1,4 +1,7 @@
 class ScoreController < ApplicationController
+  def another
+  end
+
   def test
     @score = 0
     @dampness_scale = 0
