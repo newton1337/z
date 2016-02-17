@@ -33,6 +33,9 @@ fieldset {
 .table-fifths th {
   width: 20%;
 }
+.table-thirds th {
+  width: 30%;
+}
 
 .label-required {
   font-size: 1.1em;

@@ -11,8 +11,14 @@ module ApplicationHelper
     "id=#{question_id(index, identifier)} name=#{question_id(index, identifier)}"
   end
 
-  def multi_quesiton_html(index, group, identifier)
-    "id=#{multi_question_id(index, group, identifier)} name=#{multi_question_id(index, group, identifier)}"
+  def multi_quesiton_html(index, group, identifier, required=false)
+    html = "id=#{multi_question_id(index, group, identifier)} name=#{multi_question_id(index, group, identifier)}"
+
+    if required
+      html += " required=required"
+    end
+
+    html
   end
 
   def build_radios(array, index, identifier, required=false)

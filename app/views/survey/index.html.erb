@@ -84,7 +84,7 @@
   </fieldset>
 
   <fieldset>
-    <h6 class="label-required">Approximately how many square feed is your home?</h6>
+    <h6 class="label-required">Approximately how many square feet is your home?</h6>
     <label>
       <input type="radio" value="less_than_1000" <%= question_html(7, 'square_feet') %> required="required">
       Less than 1000 sq. ft.
@@ -121,6 +121,15 @@
       <input type="radio" value="deferred" <%= question_html(8, 'maintained') %>>
       Deffered maintenance
     </label>
+  </fieldset>
+
+  <fieldset>
+    <h6>Is your home water supply from a well?</h6>
+    <% well = {
+      'yes' => 'Yes',
+      'no' => 'No',
+    } %>
+    <%= build_radios(well, 9, 'water_supply') %>
   </fieldset>
 
   <fieldset>
@@ -256,6 +265,19 @@
   </fieldset>
 
   <fieldset>
+    <h6>Where is your furnace located?</h6>
+    <% furnace_location = {
+      'basement': 'Basement',
+      'crawlspace': 'Crawlspace',
+      'attic': 'Attic',
+      'garage': 'Garage',
+      'inside': 'Inside the house (closet, mechanical room)',
+      'idk': 'I don\'t know',
+    } %>
+    <%= build_radios(furnace_location, 20, 'furnace_location') %>
+  </fieldset>
+
+  <fieldset>
     <h6 class="label-required">Please describe the primary cooling system in your home.</h6>
     <% cooling = {
       'central_air' => 'Central air conditioning',
@@ -350,6 +372,185 @@
           </td>
           <td>
             <input type="radio" value="energy" <%= multi_quesiton_html(21, 'remodel_time', '5_10_years') %>>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+
+  <fieldset>
+    <h6>Do you live within 1/2 maile of any of the following? Please select all that apply.</h6>
+    <% close_to = {
+      'ag': 'Agricultural area or Farm',
+      'airport': 'Airport',
+      'highway': 'Highway',
+      'industrial': 'Industrial area or Chemical plant',
+      'lake': 'Lake/Wetlands/River',
+      'ocean': 'Ocean',
+    } %>
+    <%= build_checkboxes(close_to, 22, 'lives_close_to') %>
+  </fieldset>
+
+  <fieldset>
+    <h6>Do you live 1 block from any of the following or can you smell any of the following from your home?</h6>
+    <% close_to_etc = {
+      'coffee': 'Coffee roaster',
+      'dry_cleaner': 'Dry Cleaner',
+      'gas': 'Gas Station or Automotive repair facility',
+      'golf': 'Golf course',
+      'restaurant': 'Restaurant',
+    } %>
+    <%= build_checkboxes(close_to_etc, 23, 'lives_close_to_etc') %>
+    <label>
+      <input type="checkbox" value="other" <%= question_html(23, 'lives_close_to_etc') %>>
+      Other (please specify)<br>
+      <input type="text" <%= question_html(23, 'lives_close_to_etc') %>>
+    </label>
+  </fieldset>
+
+  <fieldset>
+    <h6 class="label-required">How many meals do you typically cook at home per week?</h6>
+    <% meals = {
+      '0_4': '0 to 4',
+      '5_10': '5 to 10',
+      'greater_than_11': 'more than 11',
+    } %>
+    <%= build_radios(meals, 24, 'meals_cooked', true) %>
+  </fieldset>
+
+  <fieldset>
+    <h6>Please tell us a little bit more about your cooking habits.</h6>
+    <table class="table table-striped table-thirds">
+      <thead>
+        <tr>
+          <th>&nbsp;</th>
+          <th>Yes</th>
+          <th>No</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Do you cook with a steamer 5+ times per week?</th>
+          <td>
+            <input type="radio" value="yes" <%= multi_quesiton_html(25, 'cooking_habits', 'steam_often') %>>
+          </td>
+          <td>
+            <input type="radio" value="no" <%= multi_quesiton_html(25, 'cooking_habits', 'steam_often') %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Do you boil, simmer, and/or use a wok 5+ times per week?</th>
+          <td>
+            <input type="radio" value="yes" <%= multi_quesiton_html(25, 'cooking_habits', 'boil_often') %>>
+          </td>
+          <td>
+            <input type="radio" value="no" <%= multi_quesiton_html(25, 'cooking_habits', 'boil_often') %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Do you cook with gas?</th>
+          <td>
+            <input type="radio" value="yes" <%= multi_quesiton_html(25, 'cooking_habits', 'with_gas') %>>
+          </td>
+          <td>
+            <input type="radio" value="no" <%= multi_quesiton_html(25, 'cooking_habits', 'with_gas') %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Do you usually run the range hood while cooking?</th>
+          <td>
+            <input type="radio" value="yes" <%= multi_quesiton_html(25, 'cooking_habits', 'range_hood') %>>
+          </td>
+          <td>
+            <input type="radio" value="no" <%= multi_quesiton_html(25, 'cooking_habits', 'range_hood') %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Do you have a recirculating range hood (one that does not vent to the outside)?</th>
+          <td>
+            <input type="radio" value="yes" <%= multi_quesiton_html(25, 'cooking_habits', 'recirculating_hood') %>>
+          </td>
+          <td>
+            <input type="radio" value="no" <%= multi_quesiton_html(25, 'cooking_habits', 'recirculating_hood') %>>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+
+  <fieldset>
+    <h6 class="label-required">How many times a week do you and your family members take showers longer than 10 minutes?</h6>
+    <% showers ={
+      'never': 'Never',
+      '1_5': '1-5 times per week',
+      'greater_than_6': '6+ times per week',
+    } %>
+    <%= build_radios(showers, 26, 'long_showers_per_week', true) %>
+  </fieldset>
+
+  <fieldset>
+    <h6 class="label-required">Please tell us a little more about moisture in your home. Do you/your family <em>most often</em>:</h6>
+    <table class="table table-striped table-thirds">
+      <thead>
+        <tr>
+          <th>&nbsp;</th>
+          <th>Yes</th>
+          <th>No</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Run the bath fan while showering?</th>
+          <td>
+            <input type="radio" value="yes" <%= multi_quesiton_html(27, 'misc_moisture', 'shower_fan', true) %>>
+          </td>
+          <td>
+            <input type="radio" value="no" <%= multi_quesiton_html(27, 'misc_moisture', 'shower_fan', true) %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Run a humidifier in one or more rooms?</th>
+          <td>
+            <input type="radio" value="yes" <%= multi_quesiton_html(27, 'misc_moisture', 'humidifier', true) %>>
+          </td>
+          <td>
+            <input type="radio" value="no" <%= multi_quesiton_html(27, 'misc_moisture', 'humidifier', true) %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Use a steam shower?</th>
+          <td>
+            <input type="radio" value="yes" <%= multi_quesiton_html(27, 'misc_moisture', 'steam_shower', true) %>>
+          </td>
+          <td>
+            <input type="radio" value="no" <%= multi_quesiton_html(27, 'misc_moisture', 'steam_shower', true) %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Use an indoor jacuzzi or spa tub?</th>
+          <td>
+            <input type="radio" value="yes" <%= multi_quesiton_html(27, 'misc_moisture', 'jacuzzi', true) %>>
+          </td>
+          <td>
+            <input type="radio" value="no" <%= multi_quesiton_html(27, 'misc_moisture', 'jacuzzi', true) %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Notice condensation on walls or ceilings?</th>
+          <td>
+            <input type="radio" value="yes" <%= multi_quesiton_html(27, 'misc_moisture', 'wall_condensation', true) %>>
+          </td>
+          <td>
+            <input type="radio" value="no" <%= multi_quesiton_html(27, 'misc_moisture', 'wall_condensation', true) %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Notice condensation in your laundry room?</th>
+          <td>
+            <input type="radio" value="yes" <%= multi_quesiton_html(27, 'misc_moisture', 'laundry_condensation', true) %>>
+          </td>
+          <td>
+            <input type="radio" value="no" <%= multi_quesiton_html(27, 'misc_moisture', 'laundry_condensation', true) %>>
           </td>
         </tr>
       </tbody>
