@@ -36,6 +36,12 @@ fieldset {
 .table-thirds th {
   width: 30%;
 }
+.table-fourths th {
+  width: 25%;
+}
+.table-sixths th {
+  width: 16.666666667%;
+}
 
 .label-required {
   font-size: 1.1em;

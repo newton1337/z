@@ -557,6 +557,554 @@
     </table>
   </fieldset>
 
+  <fieldset>
+    <h6 class="label-required">Water leaks and intrusion can also be a major source of dampness. To the best of your knowledge has your home had any water leaks/damage in the past 2 years?</h6>
+    <% water_leaks = {
+      'one_leak': 'Yes, one leak',
+      'two_leaks': 'Yes, two or more leaks in different locations',
+      'no': 'No',
+    } %>
+    <%= build_radios(water_leaks, 28, 'water_leaks', true) %>
+  </fieldset>
+
+  <fieldset>
+    <h6>Please describe the type of leak and how it was resolved. Check all that apply</h6>
+    <table class="table table-striped table-thirds">
+      <thead>
+        <tr>
+          <th>&nbsp;</th>
+          <th>Fixed Immediately</th>
+          <th>Long-term or Not Fixed Immediately</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Water leak (localized puddling)</th>
+          <td>
+            <input type="radio" value="fixed_immediately" <%= multi_quesiton_html(29, 'leak_treatment', 'localized_puddling') %>>
+          </td>
+          <td>
+            <input type="radio" value="not_fixed_immediately" <%= multi_quesiton_html(29, 'leak_treatment', 'localized_puddling') %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Water leak (recurring)</th>
+          <td>
+            <input type="radio" value="fixed_immediately" <%= multi_quesiton_html(29, 'leak_treatment', 'recurring') %>>
+          </td>
+          <td>
+            <input type="radio" value="not_fixed_immediately" <%= multi_quesiton_html(29, 'leak_treatment', 'recurring') %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Water leak (significant flowing water)</th>
+          <td>
+            <input type="radio" value="fixed_immediately" <%= multi_quesiton_html(29, 'leak_treatment', 'flowing') %>>
+          </td>
+          <td>
+            <input type="radio" value="not_fixed_immediately" <%= multi_quesiton_html(29, 'leak_treatment', 'flowing') %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Sewage leak (sink/toilet overflow)</th>
+          <td>
+            <input type="radio" value="fixed_immediately" <%= multi_quesiton_html(29, 'leak_treatment', 'home_sewage') %>>
+          </td>
+          <td>
+            <input type="radio" value="not_fixed_immediately" <%= multi_quesiton_html(29, 'leak_treatment', 'home_sewage') %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Sewage leak (backflow from street)</th>
+          <td>
+            <input type="radio" value="fixed_immediately" <%= multi_quesiton_html(29, 'leak_treatment', 'street_sewage') %>>
+          </td>
+          <td>
+            <input type="radio" value="not_fixed_immediately" <%= multi_quesiton_html(29, 'leak_treatment', 'street_sewage') %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Flooding or other catastrophic water damage</th>
+          <td>
+            <input type="radio" value="fixed_immediately" <%= multi_quesiton_html(29, 'leak_treatment', 'catastrophic') %>>
+          </td>
+          <td>
+            <input type="radio" value="not_fixed_immediately" <%= multi_quesiton_html(29, 'leak_treatment', 'catastrophic') %>>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+
+  <fieldset>
+    <h6>What was the source of the leak?</h6>
+    <% leak_source = {
+      'sink': 'Sink, refrigerator, ice machine, dishwasher',
+      'bath': 'Bath or shower',
+      'pipe': 'Pipe (wall or floor)',
+      'roof': 'Roof',
+      'foundation': 'Foundation leaks (into basement)',
+      'waterbed': 'Waterbed',
+    } %>
+    <%= build_checkboxes(leak_source, 30, 'leak_sources') %>
+    <label>
+      <input type="checkbox" value="other" <%= question_html(30, 'leak_sources') %>>
+      Other (please specify)<br>
+      <input type="text" <%= question_html(30, 'leak_sources') %>>
+    </label>
+  </fieldset>
+
+  <fieldset>
+    <h6 class="label-required">Do you notice any of the following outside your home?</h6>
+    <% noticable_water = {
+      'sprinklers': 'Sprinklers that hit the outside of the house',
+      'rainwater': 'Rainwater or snow melt against the sides/near the foundation of the house',
+      'down_spouts': 'Down spouts that drain against/near the house',
+      'na': 'N/A',
+    } %>
+    <%= build_checkboxes(noticable_water, 31, 'noticable_water', true) %>
+  </fieldset>
+
+  <fieldset>
+    <h6>Do you notice any of the following inside your home?</h6>
+    <table class="table table-striped table-thirds">
+      <thead>
+        <tr>
+          <th>&nbsp;</th>
+          <th>Yes</th>
+          <th>No</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Unpleasant odors or smells</th>
+          <td>
+            <input type="radio" value="yes" <%= multi_quesiton_html(31, 'home_misc', 'odors') %>>
+          </td>
+          <td>
+            <input type="radio" value="no" <%= multi_quesiton_html(31, 'home_misc', 'odors') %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">A lot of dust on surfaces</th>
+          <td>
+            <input type="radio" value="yes" <%= multi_quesiton_html(31, 'home_misc', 'dust') %>>
+          </td>
+          <td>
+            <input type="radio" value="no" <%= multi_quesiton_html(31, 'home_misc', 'dust') %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Dark/grey dirt or dust on windowsills or near windows</th>
+          <td>
+            <input type="radio" value="yes" <%= multi_quesiton_html(31, 'home_misc', 'dirt') %>>
+          </td>
+          <td>
+            <input type="radio" value="no" <%= multi_quesiton_html(31, 'home_misc', 'dirt') %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Water stains on walls and/or ceilings</th>
+          <td>
+            <input type="radio" value="yes" <%= multi_quesiton_html(31, 'home_misc', 'stains') %>>
+          </td>
+          <td>
+            <input type="radio" value="no" <%= multi_quesiton_html(31, 'home_misc', 'stains') %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Visible mold on walls and/or ceilings</th>
+          <td>
+            <input type="radio" value="yes" <%= multi_quesiton_html(31, 'home_misc', 'mold') %>>
+          </td>
+          <td>
+            <input type="radio" value="no" <%= multi_quesiton_html(31, 'home_misc', 'mold') %>>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+
+  <fieldset>
+    <h6>What type of vacuum do you own?</h6>
+    <% vacuum_type = {
+      'hepa_filter': 'HEPA filtered vacuum',
+      'hepa_style': 'HEPA "style" vacuum',
+      'central': 'Central vacuum',
+      'standard': 'Standard vacuum',
+      'none': 'None',
+      'idk': 'I don\'t know',
+    } %>
+    <%= build_radios(vacuum_type, 32, 'vacuum_type') %>
+  </fieldset>
+
+  <fieldset>
+    <h6>On average how often do you vacuum?</h6>
+    <% vacuum_freq = {
+      '3x': '3x per week or more',
+      '1x': '1x per week',
+      'monthly': 'Monthly',
+      'rarely': 'Rarely/Never',
+    } %>
+    <%= build_radios(vacuum_freq, 33, 'vacuum_freq') %>
+  </fieldset>
+
+  <fieldset>
+    <h6 class="label-required">Where do you store cleaning products or chemicals?</h6>
+
+    <table class="table table-striped table-sixths">
+      <thead>
+        <tr>
+          <th>&nbsp;</th>
+          <th>Inside the bedroom</th>
+          <th>Inside the house (not in the bedroom)</th>
+          <th>Inside an attached garage</th>
+          <th>Outside the house/detached garage</th>
+          <th>N/A</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Cleaning supplies</th>
+          <td>
+            <input type="checkbox" value="bedroom" <%= multi_quesiton_html(34, 'chemicals', 'bedroom', true) %>>
+          </td>
+          <td>
+            <input type="checkbox" value="house" <%= multi_quesiton_html(34, 'chemicals', 'bedroom', true) %>>
+          </td>
+          <td>
+            <input type="checkbox" value="garage" <%= multi_quesiton_html(34, 'chemicals', 'bedroom', true) %>>
+          </td>
+          <td>
+            <input type="checkbox" value="outside" <%= multi_quesiton_html(34, 'chemicals', 'bedroom', true) %>>
+          </td>
+          <td>
+            <input type="checkbox" value="na" <%= multi_quesiton_html(34, 'chemicals', 'bedroom', true) %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Personal care supplies</th>
+          <td>
+            <input type="checkbox" value="bedroom" <%= multi_quesiton_html(34, 'chemicals', 'personal', true) %>>
+          </td>
+          <td>
+            <input type="checkbox" value="house" <%= multi_quesiton_html(34, 'chemicals', 'personal', true) %>>
+          </td>
+          <td>
+            <input type="checkbox" value="garage" <%= multi_quesiton_html(34, 'chemicals', 'personal', true) %>>
+          </td>
+          <td>
+            <input type="checkbox" value="outside" <%= multi_quesiton_html(34, 'chemicals', 'personal', true) %>>
+          </td>
+          <td>
+            <input type="checkbox" value="na" <%= multi_quesiton_html(34, 'chemicals', 'personal', true) %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Paint and art supplies</th>
+          <td>
+            <input type="checkbox" value="bedroom" <%= multi_quesiton_html(34, 'chemicals', 'paint', true) %>>
+          </td>
+          <td>
+            <input type="checkbox" value="house" <%= multi_quesiton_html(34, 'chemicals', 'paint', true) %>>
+          </td>
+          <td>
+            <input type="checkbox" value="garage" <%= multi_quesiton_html(34, 'chemicals', 'paint', true) %>>
+          </td>
+          <td>
+            <input type="checkbox" value="outside" <%= multi_quesiton_html(34, 'chemicals', 'paint', true) %>>
+          </td>
+          <td>
+            <input type="checkbox" value="na" <%= multi_quesiton_html(34, 'chemicals', 'paint', true) %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Fertilizers and pesticides</th>
+          <td>
+            <input type="checkbox" value="bedroom" <%= multi_quesiton_html(34, 'chemicals', 'pesticide', true) %>>
+          </td>
+          <td>
+            <input type="checkbox" value="house" <%= multi_quesiton_html(34, 'chemicals', 'pesticide', true) %>>
+          </td>
+          <td>
+            <input type="checkbox" value="garage" <%= multi_quesiton_html(34, 'chemicals', 'pesticide', true) %>>
+          </td>
+          <td>
+            <input type="checkbox" value="outside" <%= multi_quesiton_html(34, 'chemicals', 'pesticide', true) %>>
+          </td>
+          <td>
+            <input type="checkbox" value="na" <%= multi_quesiton_html(34, 'chemicals', 'pesticide', true) %>>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+
+  <fieldset>
+    <h6 class="label-required">Do you think you have mold in your house?</h6>
+    <% mold = {
+      'yes': 'Yes',
+      'no': 'No',
+      'idk': 'I don\'t know',
+    } %>
+    <%= build_radios(mold, 35, 'mold', true) %>
+  </fieldset>
+
+  <fieldset>
+    <h6 class="label-required">Do you regularly use air fresheners, incense, and/or burn scented candals in your home?</h6>
+    <% fresheners = {
+      'yes': 'Yes',
+      'no': 'No',
+    } %>
+    <%= build_radios(fresheners, 36, 'fresheners', true) %>
+  </fieldset>
+
+  <fieldset>
+    <h6 class="label-required">Do you treat for pests?</h6>
+
+    <table class="table table-striped table-fourths">
+      <thead>
+        <th>&nbsp;</th>
+        <th>Daily, Weekly, Monthly, Quarterly</th>
+        <th>Occasionally/as needed</th>
+        <th>I don't treat</th>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Indoor</th>
+          <td>
+            <input type="radio" value="often" <%= multi_quesiton_html(37, 'pest_treatment', 'indoor', true) %>>
+          </td>
+          <td>
+            <input type="radio" value="ocassionally" <%= multi_quesiton_html(37, 'pest_treatment', 'indoor', true) %>>
+          </td>
+          <td>
+            <input type="radio" value="never" <%= multi_quesiton_html(37, 'pest_treatment', 'indoor', true) %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Outdoor</th>
+          <td>
+            <input type="radio" value="often" <%= multi_quesiton_html(37, 'pest_treatment', 'outdoor', true) %>>
+          </td>
+          <td>
+            <input type="radio" value="ocassionally" <%= multi_quesiton_html(37, 'pest_treatment', 'outdoor', true) %>>
+          </td>
+          <td>
+            <input type="radio" value="never" <%= multi_quesiton_html(37, 'pest_treatment', 'outdoor', true) %>>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+
+  <fieldset>
+    <h6 class="label-required">Do you have any pests <em>inside</em> your home (i.e., in attic, crawlspace, wall cavities)?</h6>
+
+    <% pests = {
+      'bats': 'Bats',
+      'roaches': 'Cockroaches',
+      'mites': 'Dust mites',
+      'rats': 'Mice/Rats',
+      'termites': 'Termites',
+      'ants': 'Ants',
+      'na': 'N/A',
+    } %>
+    <%= build_checkboxes(pests, 38, 'pests', true) %>
+  </fieldset>
+
+  <fieldset>
+    <h6>Do you experience any of the following symptoms in your home on a regular/ongoing basis?</h6>
+    <% symptoms = {
+      'sinus_congestion': 'Sinus congestion',
+      'sleep_disturbance': 'Sleep disturbance (difficulty sleeping, waking up)',
+      'increased_sensitivity': 'Increased sensitivity to allergies',
+      'dry_eyes': 'Dry eyes',
+      'moody': 'Mood changes/feeling agitated',
+      'depression': 'Feeling depressed',
+      'headaches': 'Frequent headaches',
+      'coughing': 'Coughing, sneezing, or shortness of breath',
+      'fatigue': 'Extreme fatigue',
+      'aching': 'Aching muscles or joints',
+      'stomach_discomfort': 'Stomach discomfort',
+      'nausea': 'Nausea',
+      'asthma': 'Increased need for asthma inhalers or other respitory medications',
+      'foggy_thinking': 'Foggy thinking, difficulty making decisions',
+      'night_sweats': 'Night sweats',
+      'frequent_colds': 'Always feeling sick (frequent colds or respitory issues)',
+      'memory_loss': 'Short term memory loss',
+      'heart_racing': 'Heart racing or palpitations',
+      'rashes': 'Skin rashes',
+      'sore_throat': 'Frequent sore throats',
+      'vertigo': 'Vertigo or dizziness',
+      'nosebleeds': 'Nosebleeds',
+      'no_symptoms': 'No symptoms',
+    } %>
+    <%= build_checkboxes(symptoms, 39, 'symptoms') %>
+    <label>
+      <input type="checkbox" value="other" <%= question_html(39, 'symptoms') %>>
+      Other (please specify)<br>
+      <input type="text" <%= question_html(39, 'symptoms') %>>
+    </label>
+  </fieldset>
+
+  <fieldset>
+    <h6>Did any of your symptons start or get worse after:</h6>
+
+    <table class="table table-striped table-thirds">
+      <thead>
+        <th>&nbsp;</th>
+        <th>Yes</th>
+        <th>No</th>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">A water event (i.e., leak, pipe break, flooding)</th>
+          <td>
+            <input type="radio" value="yes" <%= multi_quesiton_html(40, 'symptoms_escalation', 'water_event') %>>
+          </td>
+          <td>
+            <input type="radio" value="no" <%= multi_quesiton_html(40, 'symptoms_escalation', 'water_event') %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">A remodel, retrofit, or house repair</th>
+          <td>
+            <input type="radio" value="yes" <%= multi_quesiton_html(40, 'symptoms_escalation', 'house_repair') %>>
+          </td>
+          <td>
+            <input type="radio" value="no" <%= multi_quesiton_html(40, 'symptoms_escalation', 'house_repair') %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Pest treatment</th>
+          <td>
+            <input type="radio" value="yes" <%= multi_quesiton_html(40, 'symptoms_escalation', 'pest_treatment') %>>
+          </td>
+          <td>
+            <input type="radio" value="no" <%= multi_quesiton_html(40, 'symptoms_escalation', 'pest_treatment') %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Professional carpet cleaning</th>
+          <td>
+            <input type="radio" value="yes" <%= multi_quesiton_html(40, 'symptoms_escalation', 'carpet_cleaning') %>>
+          </td>
+          <td>
+            <input type="radio" value="no" <%= multi_quesiton_html(40, 'symptoms_escalation', 'carpet_cleaning') %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Addition of new furniture, carpeting, and/or flooring</th>
+          <td>
+            <input type="radio" value="yes" <%= multi_quesiton_html(40, 'symptoms_escalation', 'new_flooring') %>>
+          </td>
+          <td>
+            <input type="radio" value="no" <%= multi_quesiton_html(40, 'symptoms_escalation', 'new_flooring') %>>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <label>
+      Other (please specify)<br>
+      <input type="text" id="questions[40][symptoms_escalation][other]" name="questions[40][symptoms_escalation][other]">
+    </label>
+  </fieldset>
+
+  <fieldset>
+    <h6>Do you experience symptoms (like sneezing, coughing, or headaches) during or after:</h6>
+
+    <table class="table table-striped table-thirds">
+      <thead>
+        <th>&nbsp;</th>
+        <th>Yes</th>
+        <th>No</th>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Vacuuming</th>
+          <td>
+            <input type="radio" value="yes" <%= multi_quesiton_html(41, 'symptoms_after', 'vacuuming') %>>
+          </td>
+          <td>
+            <input type="radio" value="no" <%= multi_quesiton_html(41, 'symptoms_after', 'vacuuming') %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Cooking</th>
+          <td>
+            <input type="radio" value="yes" <%= multi_quesiton_html(41, 'symptoms_after', 'cooking') %>>
+          </td>
+          <td>
+            <input type="radio" value="no" <%= multi_quesiton_html(41, 'symptoms_after', 'cooking') %>>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Turning on the heat or air conditioning</th>
+          <td>
+            <input type="radio" value="yes" <%= multi_quesiton_html(41, 'symptoms_after', 'ac') %>>
+          </td>
+          <td>
+            <input type="radio" value="no" <%= multi_quesiton_html(41, 'symptoms_after', 'ac') %>>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <label>
+      Other (please specify)<br>
+      <input type="text" id="questions[41][symptoms_after][other]" name="questions[41][symptoms_after][other]">
+    </label>
+  </fieldset>
+
+  <fieldset>
+    <h6>Do you feel better when you leave the house only to feel worse again when you return?  Consider how you feel when you leave the house each day or go away for the weekend or on vacation.</h6>
+    <% do_you_feel_like_shit_when_you_get_home = {
+      'yes': 'Yes',
+      'no': 'No',
+      'idk': 'I don\'t know',
+    } %>
+    <%= build_radios(do_you_feel_like_shit_when_you_get_home, 42, 'feel_worse_at_home') %>
+  </fieldset>
+
+  <fieldset>
+    <h6>If you feel better when you leave the house, what symptoms are relieved?</h6>
+    <textarea <%= question_html(42, 'symptoms_relieved') %>></textarea>
+  </fieldset>
+
+  <fieldset>
+    <h6>To what extent do you believe your home is negatively impacting your health or the health of your family?</h6>
+    <% assumed_health_impact = {
+      'none': 'None',
+      'little': 'Very little',
+      'somewhat': 'Somewhat',
+      'moderate': 'A moderate amount',
+      'extreme': 'A great deal',
+    } %>
+    <%= build_radios(assumed_health_impact, 43, 'assumed_health_impact') %>
+  </fieldset>
+
+  <fieldset>
+    <h6>What, if any, specific elements of your home are you concerned might be negatively impacting your health or the health of your family?</h6>
+    <textarea <%= question_html(44, 'concerned_health_impact') %>></textarea>
+  </fieldset>
+
+  <fieldset>
+    <h6>Why do you believe these elements are having this impact?</h6>
+    <textarea <%= question_html(45, 'concerned_health_impact_explaination') %>></textarea>
+  </fieldset>
+
+  <fieldset>
+    <h6>Do you have any other concerns about your home we should know about?</h6>
+    <textarea <%= question_html(46, 'concerns_etc') %>></textarea>
+  </fieldset>
+
+  <fieldset>
+    <h6>Please share any feedback you have about the survey</h6>
+    <textarea <%= question_html(47, 'survey_feedback') %>></textarea>
+  </fieldset>
+
   <%= submit_tag 'Calculate Score', class: 'btn btn-primary' %>
 <% end %>
 
