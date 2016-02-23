@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # testing
   root 'survey#index'
 
   post 'score/test'
